@@ -19,8 +19,8 @@ tar xf mpfr-3.1.5.tar.xz
 mv mpfr-3.1.5 gcc-5.2.0/mpfr 
 tar xf isl-0.14.tar.bz2 
 mv isl-0.14 gcc-5.2.0/isl
-mkdir -p build/gcc-5.2.0/gcc-build 
-cd build/gcc-5.2.0/gcc-build 
+mkdir -p gcc-5.2.0/gcc-build 
+cd gcc-5.2.0/gcc-build 
 ../configure --prefix=/usr/local/x86_64-local-gcc-5.2.1 \
          --disable-multilib \
          --enable-languages=c,c++ \
