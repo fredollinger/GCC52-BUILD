@@ -54,16 +54,37 @@ You'll need to type in your root password at the end as we use sudo to install.
 
 Once things are installed, you can use the tool-chain in different ways.
 
-### Call Directly 
+### Set Your Path
+
+I like this method best. It's a simple command which allows one to use all the tools at once.
+
+You can put this in your .bashrc file (or equivalent). Check with your shell
+documentation to set this automatically.
+
+```
+export PATH=/usr/local/x86_64-local-gcc-5.2.1/bin:$PATH
+```
+
+### Call Directly
 
 You can run the compiler directly by /usr/local/x86_64-local-gcc-5.2.1/bin/gcc
 for example.
 
+Advantage is that you can have many compilers side by side. 
+
+Disadvantage is that you'd have to manually set all these in your build system
+via a configure argument (autotools) or euqivalent.
+
 ### Symlinks
 
-I like this method. But you have to be aware that if your distro installs gcc
-or g++ it will overwrite your local compiler, and you'll have to restore
-symlinks.
+You have to be aware that if your distro installs gcc or g++ it will overwrite
+your local compiler, and you'll have to restore symlinks. Also, you have to make a lot
+of symlinks.
+
+If I were going this route, I'd make the symlink step a separate, optional script.
+
+However, I suggest setting the path, so I'll leave completing this an excercise
+for the reader if they want to use more tools.
 
 ```
 mv /usr/bin/gcc /usr/bin/g++ /tmp
@@ -73,11 +94,12 @@ ln -s /usr/local/x86_64-local-gcc-5.2.1/bin/g++ /usr/bin/g++
 
 ### Environmental Variables
 
+Here I'm not sure if this will work with all build systems. Some might look for gcc, directly?
+
+Also, like the symlink solution, you'll have to export variables for all the tools you'd like to use.
+
+Use at your own risk.
+
 ```
 export CC=/usr/local/x86_64-local-gcc-5.2.1/bin/gcc
-export CXX=/usr/local/x86_64-local-gcc-5.2.1/bin/g++
-export CPP=/usr/local/x86_64-local-gcc-5.2.1/bin/g++
 ```
-
-
-
